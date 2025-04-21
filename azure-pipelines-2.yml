@@ -8,6 +8,8 @@ variables:
 - group: Books
 
 steps:
+- checkout: self
+
 - script: |
     echo "user.name=$(userName)" > credentials.properties
     echo "user.password=$(userPassword)" >> credentials.properties
