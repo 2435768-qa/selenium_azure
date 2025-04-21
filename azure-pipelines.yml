@@ -11,12 +11,12 @@ steps:
 - checkout: self
 
 - script: |
-    echo "user.name=$(userName)" > credentials.properties
-    echo "user.password=$(userPassword)" >> credentials.properties
-    echo "user.first.name=$(userFirstName)" >> credentials.properties
-    echo "user.last.name=$(userLastName)" >> credentials.properties
-    echo "user.id=$(userId)" >> credentials.properties
-  displayName: 'Write credentials to properties file'
+    echo "user.name=${{ variables.userName }}" > credentials.properties
+    echo "user.password=${{ variables.userPassword }}" >> credentials.properties
+    echo "user.first.name=${{ variables.userFirstName }}" >> credentials.properties
+    echo "user.last.name=${{ variables.userLastName }}" >> credentials.properties
+    echo "user.id=${{ variables.userId }}" >> credentials.properties
+  displayName: 'Write user credentials to properties file'
 
 - task: Gradle@4
   inputs:
@@ -29,4 +29,4 @@ steps:
     jdkArchitectureOption: 'x64'
     sonarQubeRunAnalysis: false
     spotBugsAnalysis: false
-  displayName: 'Build with Gradle using Java 17'
+  displayName: 'Gradle Build with JDK 17'
