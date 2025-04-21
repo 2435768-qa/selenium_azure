@@ -2,15 +2,24 @@ trigger:
 - main
 
 pool:
-  name: Default
+  name: Default  
 
 variables:
-- group: Books
+- group: Books  
 
 steps:
-- checkout: self
+- checkout: self  
 
 - script: |
+    echo "Creating credentials.properties..."
+
+    # Проверка переменных (для отладки)
+    echo "userName: $(userName)"
+    echo "userFirstName: $(userFirstName)"
+    echo "userLastName: $(userLastName)"
+    echo "userId: $(userId)"
+    echo "userPassword: [REDACTED]"
+
     echo "user.name=$(userName)" > credentials.properties
     echo "user.password=$(userPassword)" >> credentials.properties
     echo "user.first.name=$(userFirstName)" >> credentials.properties
