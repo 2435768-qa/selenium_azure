@@ -12,14 +12,14 @@ import org.testng.annotations.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 
-//public class AccountTest {
-//
-//    @Test
-//    public void getToken() {
-//        LoginViewModel loginViewModel = LoginViewModel
-//                .generateModel(ReadProperties.USERNAME, ReadProperties.USER_PASSWORD);
-//        Response response = ResponseService.sendModel(Method.POST, Path.AUTHORIZED, loginViewModel);
-//        assertThat("Status code is not 200 OK", response.getStatusCode(), Matchers.equalTo(StatusCode.OK.getCode()));
-//    }
-//
-//}
+public class AccountTest {
+
+    @Test
+    public void getToken() {
+        LoginViewModel loginViewModel = LoginViewModel
+                .generateModel(ReadProperties.USERNAME, ReadProperties.USER_PASSWORD);
+        Response response = ResponseService.sendModel(Method.POST, Path.AUTHORIZED, loginViewModel);
+        assertThat("Status code is not 200 OK", response.getStatusCode(), Matchers.equalTo(StatusCode.OK.getCode()));
+    }
+
+}
