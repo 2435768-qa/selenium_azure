@@ -2,7 +2,7 @@ trigger:
 - main
 
 pool:
-  name: Default
+  name: Default 
 
 variables:
 - group: Books
@@ -16,7 +16,7 @@ steps:
     echo "user.first.name=$(userFirstName)" >> credentials.properties
     echo "user.last.name=$(userLastName)" >> credentials.properties
     echo "user.id=$(userId)" >> credentials.properties
-  displayName: 'Write user variables to credentials.properties'
+  displayName: 'Write credentials to properties file'
 
 - task: Gradle@4
   inputs:
@@ -25,7 +25,8 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/TEST-*.xml'
     javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.11'
+    jdkVersionOption: '17'
     jdkArchitectureOption: 'x64'
     sonarQubeRunAnalysis: false
     spotBugsAnalysis: false
+  displayName: 'Build with Gradle using Java 17'
