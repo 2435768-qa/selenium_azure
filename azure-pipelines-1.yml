@@ -1,0 +1,33 @@
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  userName: ''
+  userFirstName: ''
+  userLastName: ''
+  userId: ''
+  userPassword: ''  
+
+steps:
+- script: |
+    echo "user.name=$(userName)" > app.properties
+    echo "user.password=$(userPassword)" >> app.properties
+    echo "user.first.name=$(userFirstName)" >> app.properties
+    echo "user.last.name=$(userLastName)" >> app.properties
+    echo "user.id=$(userId)" >> app.properties
+  displayName: 'Write user variables to app.properties'
+
+- task: Gradle@4
+  inputs:
+    gradleWrapperFile: 'gradlew'
+    tasks: 'build'
+    publishJUnitResults: true
+    testResultsFiles: '**/TEST-*.xml'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.11'
+    jdkArchitectureOption: 'x64'
+    sonarQubeRunAnalysis: false
+    spotBugsAnalysis: false
