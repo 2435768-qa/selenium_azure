@@ -13,4 +13,4 @@ steps:
 - script: |
     echo "Variable from group Books:"
     echo "user.name = ${{ variables.userName }}"
-  displayName: '🧪 Test variable access from group'
+  displayName: 'Test variable access from group'
