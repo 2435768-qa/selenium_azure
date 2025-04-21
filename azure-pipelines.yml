@@ -1,25 +1,19 @@
 trigger:
-- none
+- main
 
 pool:
   name: Default
 
-variables:
-- group: Books
-- name: System.Debug
-  value: true
 
 steps:
 - checkout: self
 
-- script: |
-    echo "======================"
-    echo "🔍 DEBUG: Variable Group Test"
-    echo "userName: $(userName)"
-    echo "userPassword: $(userPassword)"
-    echo "userFirstName: $(userFirstName)"
-    echo "userLastName: $(userLastName)"
-    echo "userId: $(userId)"
-    echo "======================"
-  displayName: 'Проверка переменных из Variable Group'
-
+- task: Gradle@4
+  inputs:
+    gradleWrapperFile: 'gradlew'
+    tasks: 'build'
+    publishJUnitResults: true
+    testResultsFiles: '**/TEST-*.xml'
+    javaHomeOption: 'JDKVersion'
+    sonarQubeRunAnalysis: false
+    spotBugsAnalysis: false
