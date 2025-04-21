@@ -1,0 +1,22 @@
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  userName: ''
+  userPassword: ''
+  userFirstName: ''
+  userLastName: ''
+  userId: ''
+
+steps:
+- script: |
+    echo "user.name=$(userName)" > credentials.properties
+    echo "user.password=$(userPassword)" >> credentials.properties
+    echo "user.first.name=$(userFirstName)" >> credentials.properties
+    echo "user.last.name=$(userLastName)" >> credentials.properties
+    echo "user.id=$(userId)" >> credentials.properties
+  displayName: 'Write user variables to credentials.properties'
+
