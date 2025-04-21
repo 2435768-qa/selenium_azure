@@ -2,7 +2,7 @@ trigger:
 - main
 
 pool:
-  name: Default 
+  name: Default
 
 variables:
 - group: Books
@@ -11,22 +11,6 @@ steps:
 - checkout: self
 
 - script: |
-    echo "user.name=${{ variables.userName }}" > credentials.properties
-    echo "user.password=${{ variables.userPassword }}" >> credentials.properties
-    echo "user.first.name=${{ variables.userFirstName }}" >> credentials.properties
-    echo "user.last.name=${{ variables.userLastName }}" >> credentials.properties
-    echo "user.id=${{ variables.userId }}" >> credentials.properties
-  displayName: 'Write user credentials to properties file'
-
-- task: Gradle@4
-  inputs:
-    gradleWrapperFile: 'gradlew'
-    tasks: 'build'
-    publishJUnitResults: true
-    testResultsFiles: '**/TEST-*.xml'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.17'
-    jdkArchitectureOption: 'x64'
-    sonarQubeRunAnalysis: false
-    spotBugsAnalysis: false
-  displayName: 'Gradle Build with JDK 17'
+    echo "Variable from group Books:"
+    echo "user.name = ${{ variables.userName }}"
+  displayName: '🧪 Test variable access from group'
