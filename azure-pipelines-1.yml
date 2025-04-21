@@ -1,0 +1,20 @@
+trigger:
+- main
+
+pool:
+  name: Default
+
+steps:
+- checkout: self
+
+- task: Gradle@4
+  inputs:
+    gradleWrapperFile: 'gradlew'
+    tasks: 'build'
+    publishJUnitResults: true
+    testResultsFiles: '**/TEST-*.xml'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.17'
+    jdkArchitectureOption: 'x64'
+    sonarQubeRunAnalysis: false
+    spotBugsAnalysis: false
