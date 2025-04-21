@@ -25,7 +25,7 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/TEST-*.xml'
     javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '17'
+    jdkVersionOption: '1.17'
     jdkArchitectureOption: 'x64'
     sonarQubeRunAnalysis: false
     spotBugsAnalysis: false
