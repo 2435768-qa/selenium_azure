@@ -1,19 +1,23 @@
 trigger:
-- main
+  branches:
+    include:
+      - main
 
 pool:
-  name: Default
-
+  vmImage: Default
 
 steps:
-- checkout: self
+  - task: JavaToolInstaller@1
+    inputs:
+      versionSpec: '17'
+      jdkArchitectureOption: 'x64'
+      jdkSourceOption: 'PreInstalled'
 
-- task: Gradle@4
-  inputs:
-    gradleWrapperFile: 'gradlew'
-    tasks: 'build'
-    publishJUnitResults: true
-    testResultsFiles: '**/TEST-*.xml'
-    javaHomeOption: 'JDKVersion'
-    sonarQubeRunAnalysis: false
-    spotBugsAnalysis: false
+  - task: Gradle@3
+    inputs:
+      gradleWrapperFile: 'gradlew'
+      gradleOptions: '-Xmx1024m'
+      tasks: 'clean test'
+      options: '--info'
+      publishJUnitResults: true
+      testResultsFiles: '**/build/test-results/test/*.xml'
