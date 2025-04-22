@@ -18,12 +18,6 @@ steps:
       echo "user.id=$(userId)" >> credentials.properties
     displayName: 'Write user variables to credentials.properties'
 
-  - task: JavaToolInstaller@1
-    inputs:
-      versionSpec: '17'
-      jdkArchitectureOption: 'x64'
-      jdkSourceOption: 'PreInstalled'
-
   - task: Gradle@4
     inputs:
       gradleWrapperFile: 'gradlew'
